@@ -1,0 +1,37 @@
+CREATE DATABASE hospital;
+USE hospital;
+
+CREATE TABLE usuarios(
+	id_documento INT PRIMARY KEY  ,
+    nombre VARCHAR(40),
+    edad INT,
+    direccion VARCHAR(200),
+    correo VARCHAR(30),
+    contrasena VARCHAR(50)
+    );
+    
+CREATE TABLE citas(
+	id_cita INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    fecha VARCHAR(30),
+    dia_cita VARCHAR(30),
+    caso VARCHAR(350),
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_documento)
+);
+
+INSERT INTO usuarios VALUES (123456789,'Maria', 30, 'Calle Principal 123', 'maria@email.com', 'contraseña_segura');
+INSERT INTO usuarios VALUES (1524892595,'Carlos', 35, 'Avenida Central 456', 'carlos@email.com', 'contraseña_fuerte');
+
+select *from  usuarios;
+
+INSERT INTO citas (id_usuario,fecha,dia_cita,caso) VALUES (123456789,'15/08/2023','16/11/2023','undo como estas');
+Select * from citas;
+
+
+
+Insert into usuarios VALUES (123,'dsad',12,'dasd','dsad@sad','sad');
+
+-- Metodo para sacar datos
+
+SELECT usuarios.nombre, usuarios.id_documento, citas.dia_cita, citas.caso , citas.id_cita FROM usuarios 
+JOIN citas ON usuarios.id_documento = citas.id_usuario 
